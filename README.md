@@ -83,7 +83,7 @@ Note: Detailed tutorials in Jupyter Notebook format are available in the tutoria
 ## 📊 Data Availability
 To reproduce the results presented in our paper, the datasets can be downloaded from the following public repositories:
 
-- **Stereo-seq Drosophila**: [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/)
+-  **Stereo-seq Drosophila**: [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/)  [Direct data link](https://www.dropbox.com/s/bvstb3en5kc6wui/E7-9h_cellbin_tdr_v2.h5ad?dl=1)
 - **MERFISH Mouse Brain**: [Allen Brain Cell (ABC) Atlas](https://alleninstitute.github.io/abc_atlas_access/descriptions/Zhuang-ABCA-2.html)
 - **Visium BRCA & DLPFC (3D Aligned)**: [So3D Database](https://So3D.bio-database.com/download.jsp)
 - **Xenium 2D Mouse Brain**: [10x Genomics Portal](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-for-xenium-explorer-demo-1-standard)
