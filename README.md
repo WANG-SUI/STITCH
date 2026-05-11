@@ -1,12 +1,16 @@
+<div align="center">
+  
 # STITCH 🧬
-**S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing.
+### **S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing
 
 **A highly scalable, decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction.**
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/release/python-380/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](#) <!-- 填入你的 bioRxiv 链接 -->
+[![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](#)
+
+</div>
 
 ---
 
