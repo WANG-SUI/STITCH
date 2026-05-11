@@ -1,4 +1,6 @@
 # STITCH 🧬
+**S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing.
+
 **A highly scalable, decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction.**
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/release/python-380/)
