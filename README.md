@@ -1,2 +1,38 @@
-# STITCH
-A decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction.
+# STITCH 🧬
+**A highly scalable, decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction.**
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](#) <!-- 填入你的 bioRxiv 链接 -->
+
+---
+
+## 📖 Introduction
+Spatial transcriptomics (ST) mapping is inherently hindered by discontinuous slice sampling and in-slice tissue damage. **STITCH** provides a deterministic, platform-agnostic computational foundation to bridge these multidimensional physical faults. 
+
+Grounded in a **"Single-Sample Internal Learning"** paradigm, STITCH eliminates the need for external reference atlases. By decoupling spatial morphology restoration from gene expression generation, STITCH flexibly repairs 2D in-slice damage and bridges 3D cross-slice gaps, effectively scaling to millions of cells.
+
+### ✨ Key Features
+- **3D Cross-Slice Interpolation**: Utilizes Optimal Transport-Conditional Flow Matching (OT-CFM) to deterministically infer continuous spatial coordinates across sections.
+- **2D In-Slice Inpainting**: Employs an attention-enhanced internal diffusion engine to achieve high-fidelity restoration of damaged structures.
+- **$\mathcal{O}(N)$ Gene Flow Engine**: A minimalist point-wise continuous flow matching module in the latent space that effectively averts memory bottlenecks for large-scale data.
+- **Platform-Agnostic**: Extensively validated across Stereo-seq, MERFISH, Xenium, and Visium platforms.
+
+---
+
+## ⚙️ Installation
+
+We highly recommend using [Conda](https://docs.conda.io/en/latest/) to manage your environment. STITCH requires Python 3.8+ and PyTorch.
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/YourUsername/STITCH.git
+cd STITCH
+
+# 2. Create a virtual environment
+conda create -n stitch_env python=3.9 -y
+conda activate stitch_env
+
+# 3. Install dependencies
+pip install -r requirements.txt
