@@ -42,3 +42,60 @@ conda activate stitch_env
 
 # 3. Install dependencies
 pip install -r requirements.txt
+```
+---
+
+## 🚀 Quick Start
+STITCH is designed to be highly modular. Below is a minimal example demonstrating how to run the decoupled pipeline.
+
+Case 1: 3D Structure Flow (e.g., MERFISH / Stereo-seq)
+```bash
+import stitch
+
+# Load adjacent spatial transcriptomic slices
+adata_prev = stitch.read_h5ad("data/slice_01.h5ad")
+adata_next = stitch.read_h5ad("data/slice_02.h5ad")
+
+# 1. Spatial Structure Restoration via OT-CFM
+# Calculate Local FGW-OT and integrate bidirectional ODE
+virtual_coords = stitch.struct_flow_3d(adata_prev, adata_next, target_depth=0.5)
+
+# 2. Gene Feature Generation via Point-wise Flow
+# Reconstruct transcriptomic profiles in O(N) complexity
+virtual_genes = stitch.gene_flow(virtual_coords, adata_prev, adata_next)
+```
+
+Case 2: Lightweight 2D Inpainting (e.g., Xenium)
+For 2D hole-inpainting tasks with highly targeted gene panels (e.g., 50 SVGs), STITCH can bypass the SAGA dimensionality reduction for an end-to-end generation.
+```bash
+import stitch
+
+# Train the attention-enhanced internal diffusion engine
+stitch.train_diffusion_2d(adata_xenium, mask_key="hole_mask", epochs=2000)
+
+# Restore physical coordinates and gene expressions
+restored_adata = stitch.inpaint_2d(adata_xenium)
+```
+Note: Detailed tutorials in Jupyter Notebook format are available in the tutorials/ folder.
+
+---
+
+## 📊 Data Availability
+To reproduce the results presented in our paper, the datasets can be downloaded from the following public repositories:
+
+- **Stereo-seq Drosophila**: [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/)
+- **MERFISH Mouse Brain**: [Allen Brain Cell (ABC) Atlas](https://portal.brain-map.org/)
+- **Visium BRCA & DLPFC (3D Aligned)**: [SO3D Database](http://www.spatialomics.org/)
+- **Xenium 2D Mouse Brain**: [10x Genomics Portal](https://www.10xgenomics.com/datasets)
+  
+
+## Citation
+If you find STITCH useful for your research, please consider citing our paper:
+```bash
+@article{YourName2024STITCH,
+  title={STITCH: A decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction},
+  author={Your Name and Co-authors},
+  journal={bioRxiv},
+  year={2024},
+  publisher={Cold Spring Harbor Laboratory}
+}
