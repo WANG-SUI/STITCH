@@ -93,9 +93,9 @@ To reproduce the results presented in our paper, the datasets can be downloaded 
 If you find STITCH useful for your research, please consider citing our paper:
 ```bash
 @article{YourName2024STITCH,
-  title={STITCH: A decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction},
+  title={STITCH: Spatial Transcriptomics Imputation via flow maTCHing},
   author={Your Name and Co-authors},
   journal={bioRxiv},
-  year={2024},
+  year={2026},
   publisher={Cold Spring Harbor Laboratory}
 }
