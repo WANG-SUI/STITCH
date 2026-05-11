@@ -48,8 +48,9 @@ pip install -r requirements.txt
 ## 🚀 Quick Start
 STITCH is designed to be highly modular. Below is a minimal example demonstrating how to run the decoupled pipeline.
 
-Case 1: 3D Structure Flow (e.g., MERFISH / Stereo-seq)
-```bash
+### Case 1: 3D Structure Flow (e.g., MERFISH / Stereo-seq)
+
+```python
 import stitch
 
 # Load adjacent spatial transcriptomic slices
@@ -65,9 +66,9 @@ virtual_coords = stitch.struct_flow_3d(adata_prev, adata_next, target_depth=0.5)
 virtual_genes = stitch.gene_flow(virtual_coords, adata_prev, adata_next)
 ```
 
-Case 2: Lightweight 2D Inpainting (e.g., Xenium)
+### Case 2: Lightweight 2D Inpainting (e.g., Xenium)
 For 2D hole-inpainting tasks with highly targeted gene panels (e.g., 50 SVGs), STITCH can bypass the SAGA dimensionality reduction for an end-to-end generation.
-```bash
+```python
 import stitch
 
 # Train the attention-enhanced internal diffusion engine
