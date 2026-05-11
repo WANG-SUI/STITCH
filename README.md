@@ -84,11 +84,10 @@ Note: Detailed tutorials in Jupyter Notebook format are available in the tutoria
 To reproduce the results presented in our paper, the datasets can be downloaded from the following public repositories:
 
 - **Stereo-seq Drosophila**: [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/)
-- **MERFISH Mouse Brain**: [Allen Brain Cell (ABC) Atlas](https://portal.brain-map.org/)
-- **Visium BRCA & DLPFC (3D Aligned)**: [SO3D Database](http://www.spatialomics.org/)
-- **Xenium 2D Mouse Brain**: [10x Genomics Portal](https://www.10xgenomics.com/datasets)
+- **MERFISH Mouse Brain**: [Allen Brain Cell (ABC) Atlas](https://alleninstitute.github.io/abc_atlas_access/descriptions/Zhuang-ABCA-2.html)
+- **Visium BRCA & DLPFC (3D Aligned)**: [So3D Database](https://So3D.bio-database.com/download.jsp)
+- **Xenium 2D Mouse Brain**: [10x Genomics Portal](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-for-xenium-explorer-demo-1-standard)
   
-
 ## Citation
 If you find STITCH useful for your research, please consider citing our paper:
 ```bash
