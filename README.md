@@ -92,3 +92,4 @@ If you find STITCH useful for your research, please cite:
   doi = {10.64898/2026.06.03.729557},
   url = {https://www.biorxiv.org/content/early/2026/06/06/2026.06.03.729557}
 }
+```
