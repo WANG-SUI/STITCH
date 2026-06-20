@@ -1,6 +1,6 @@
 <div align="center">
 
-# STITCH
+# STITCH🧬 
 
 ### **S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing
 
@@ -26,12 +26,12 @@ Unlike methods that require external reference atlases or matched histological i
 
 ## ✨ Highlights
 
-- 🧩 **Multidimensional reconstruction** for both 3D cross-slice gaps and 2D in-slice tissue damage.
-- 🧠 **Internal learning paradigm** without external atlas priors or matched histological images.
-- 🔀 **Decoupled architecture** separating spatial coordinate reconstruction and gene expression generation.
-- ⚡ **Point-wise Gene Flow** with linear computational complexity for scalable transcriptomic generation.
-- 🧬 **Cross-platform compatibility** across single-cell and spot-level spatial transcriptomics datasets.
-- 🚀 **Million-cell-scale atlas reconstruction** on a single commodity GPU.
+- **Multidimensional reconstruction** for both 3D cross-slice gaps and 2D in-slice tissue damage.
+- **Internal learning paradigm** without external atlas priors or matched histological images.
+- **Decoupled architecture** separating spatial coordinate reconstruction and gene expression generation.
+- **Point-wise Gene Flow** with linear computational complexity for scalable transcriptomic generation.
+- **Cross-platform compatibility** across single-cell and spot-level spatial transcriptomics datasets.
+- **Million-cell-scale atlas reconstruction** on a single commodity GPU.
 
 ## 🧱 Framework
 
