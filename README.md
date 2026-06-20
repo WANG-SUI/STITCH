@@ -16,7 +16,7 @@
 ---
 
 <p align="center">
-  <img src="docs/figures/fig1_overview.png" width="900">
+  <img src="figure/Fig1.png" width="900">
 </p>
 
 ## 🔬 Overview
