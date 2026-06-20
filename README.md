@@ -1,101 +1,60 @@
 <div align="center">
-  
-# STITCH 🧬
+
+# STITCH
 ### **S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing
 
-**A highly scalable, decoupled generative framework for multi-dimensional spatial transcriptomic virtual data reconstruction.**
+**A scalable, decoupled generative framework for multidimensional virtual spatial transcriptomics reconstruction.**
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/release/python-380/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](#)
+[![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](https://www.biorxiv.org/content/early/2026/06/06/2026.06.03.729557)
+[![GitHub stars](https://img.shields.io/github/stars/WANG-SUI/STITCH?style=social)](https://github.com/WANG-SUI/STITCH/stargazers)
 
 </div>
 
 ---
 
-## 📖 Introduction
-Spatial transcriptomics (ST) mapping is inherently hindered by discontinuous slice sampling and in-slice tissue damage. **STITCH** provides a deterministic, platform-agnostic computational foundation to bridge these multidimensional physical faults. 
+## Introduction
 
-Grounded in a **"Single-Sample Internal Learning"** paradigm, STITCH eliminates the need for external reference atlases. By decoupling spatial morphology restoration from gene expression generation, STITCH flexibly repairs 2D in-slice damage and bridges 3D cross-slice gaps, effectively scaling to millions of cells.
+Spatial transcriptomics technologies can resolve tissue architecture at increasingly high resolution, but complete spatial coverage remains difficult. Physical sectioning, sparse slice sampling, sequencing cost, and in-slice tissue damage often leave substantial spatial gaps, producing fragmented 3D tissue reconstructions and incomplete 2D slices.
 
-### ✨ Key Features
-- **3D Cross-Slice Interpolation**: Utilizes Optimal Transport-Conditional Flow Matching (OT-CFM) to deterministically infer continuous spatial coordinates across sections.
-- **2D In-Slice Inpainting**: Employs an attention-enhanced internal diffusion engine to achieve high-fidelity restoration of damaged structures.
-- **$\mathcal{O}(N)$ Gene Flow Engine**: A minimalist point-wise continuous flow matching module in the latent space that effectively averts memory bottlenecks for large-scale data.
-- **Platform-Agnostic**: Extensively validated across Stereo-seq, MERFISH, Xenium, and Visium platforms.
+STITCH addresses this problem as a multidimensional virtual spatial transcriptomics reconstruction task. Instead of relying on external reference atlases or matched histological image priors, STITCH learns intrinsic spatial-transcriptomic patterns directly from the observed tissue sample. The framework is motivated by internal learning: local spatial continuity, coherent microenvironmental composition, and region-specific expression structure provide sample-specific information that can support reconstruction of missing regions.
 
----
+STITCH uses a decoupled architecture that separates spatial morphology restoration from transcriptomic generation. First, a spatial-aware graph autoencoder compresses high-dimensional gene expression into a topology-preserving latent representation. Second, a Structure Flow module reconstructs missing spatial coordinates: optimal transport-conditioned flow matching is used for 3D cross-slice gaps, while an internal learning strategy is used for 2D in-slice damage repair. Third, a Gene Flow module generates the corresponding transcriptomic profiles through point-wise conditional flow matching in latent space.
 
-## ⚙️ Installation
+This design gives STITCH linear computational complexity for transcriptomic generation and enables scalable reconstruction of large spatial atlases. In the manuscript, STITCH is evaluated across single-cell and spot-level spatial transcriptomics platforms, including Stereo-seq, MERFISH, Xenium, and Visium. In a large-scale MERFISH mouse brain experiment, STITCH expands 54 observed slices into a continuous atlas of 571 slices and more than 11 million cells within approximately 5 hours on a single commodity GPU.
 
-We highly recommend using [Conda](https://docs.conda.io/en/latest/) to manage your environment. STITCH requires Python 3.8+ and PyTorch.
+## Key Features
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/YourUsername/STITCH.git
-cd STITCH
-
-# 2. Create a virtual environment
-conda create -n stitch_env python=3.9 -y
-conda activate stitch_env
-
-# 3. Install dependencies
-pip install -r requirements.txt
-```
----
-
-## 🚀 Quick Start
-STITCH is designed to be highly modular. Below is a minimal example demonstrating how to run the decoupled pipeline.
-
-### Case 1: 3D Structure Flow (e.g., MERFISH / Stereo-seq)
-
-```python
-import stitch
-
-# Load adjacent spatial transcriptomic slices
-adata_prev = stitch.read_h5ad("data/slice_01.h5ad")
-adata_next = stitch.read_h5ad("data/slice_02.h5ad")
-
-# 1. Spatial Structure Restoration via OT-CFM
-# Calculate Local FGW-OT and integrate bidirectional ODE
-virtual_coords = stitch.struct_flow_3d(adata_prev, adata_next, target_depth=0.5)
-
-# 2. Gene Feature Generation via Point-wise Flow
-# Reconstruct transcriptomic profiles in O(N) complexity
-virtual_genes = stitch.gene_flow(virtual_coords, adata_prev, adata_next)
-```
-
-### Case 2: Lightweight 2D Inpainting (e.g., Xenium)
-For 2D hole-inpainting tasks with highly targeted gene panels (e.g., 50 SVGs), STITCH can bypass the SAGA dimensionality reduction for an end-to-end generation.
-```python
-import stitch
-
-# Train the attention-enhanced internal diffusion engine
-stitch.train_diffusion_2d(adata_xenium, mask_key="hole_mask", epochs=2000)
-
-# Restore physical coordinates and gene expressions
-restored_adata = stitch.inpaint_2d(adata_xenium)
-```
-Note: Detailed tutorials in Jupyter Notebook format are available in the tutorials/ folder.
+- **3D cross-slice interpolation:** reconstructs virtual spatial sections across physical slice gaps using optimal transport-conditioned flow matching.
+- **2D in-slice repair:** restores damaged tissue regions using an internal learning strategy adapted for spatial transcriptomics.
+- **Spatial-aware latent modeling:** compresses gene expression through a graph autoencoder while preserving local spatial topology.
+- **Point-wise Gene Flow:** generates transcriptomic profiles with linear computational complexity for large-scale atlas reconstruction.
+- **Platform compatibility:** supports both single-cell and spot-level spatial transcriptomics datasets.
 
 ---
 
-## 📊 Data Availability
+## Data Availability
+
 To reproduce the results presented in our paper, the datasets can be downloaded from the following public repositories:
 
--  **Stereo-seq Drosophila**: [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/)  [Direct data link](https://www.dropbox.com/s/bvstb3en5kc6wui/E7-9h_cellbin_tdr_v2.h5ad?dl=1)
-- **MERFISH Mouse Brain**: [Allen Brain Cell (ABC) Atlas](https://alleninstitute.github.io/abc_atlas_access/descriptions/Zhuang-ABCA-2.html)
-- **Visium BRCA & DLPFC (3D Aligned)**: [So3D Database](https://So3D.bio-database.com/download.jsp)
-- **Xenium 2D Mouse Brain**: [10x Genomics Portal](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-for-xenium-explorer-demo-1-standard)
-  
+- **Stereo-seq Drosophila:** [Spateo Repository](https://spateo-release.readthedocs.io/en/latest/) and [direct data link](https://www.dropbox.com/s/bvstb3en5kc6wui/E7-9h_cellbin_tdr_v2.h5ad?dl=1)
+- **MERFISH Mouse Brain:** [Allen Brain Cell Atlas](https://alleninstitute.github.io/abc_atlas_access/descriptions/Zhuang-ABCA-2.html)
+- **Visium BRCA and DLPFC:** [So3D Database](https://So3D.bio-database.com/download.jsp)
+- **Xenium 2D Mouse Brain:** [10x Genomics Portal](https://www.10xgenomics.com/datasets/fresh-frozen-mouse-brain-for-xenium-explorer-demo-1-standard)
+
+---
+
 ## Citation
-If you find STITCH useful for your research, please consider citing our paper:
-```bash
-@article{YourName2024STITCH,
-  title={STITCH: Spatial Transcriptomics Imputation via flow maTCHing},
-  author={Your Name and Co-authors},
-  journal={bioRxiv},
-  year={2026},
-  publisher={Cold Spring Harbor Laboratory}
+
+If you find STITCH useful for your research, please cite:
+
+```bibtex
+@article{Wang2026STITCH,
+  title = {STITCH: Spatial Transcriptomics Imputation via Flow Matching with Internal Learning},
+  author = {Wang, Sui and Wang, Xinyu and Peng, Qiangwei and Li, Tiejun},
+  journal = {bioRxiv},
+  year = {2026},
+  doi = {10.64898/2026.06.03.729557},
+  url = {https://www.biorxiv.org/content/early/2026/06/06/2026.06.03.729557}
 }
+```
