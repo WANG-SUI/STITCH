@@ -2,9 +2,7 @@
 
 # STITCH🧬 
 
-### **S**patial **T**ranscriptomics **I**mputation via flow ma**TCH**ing
-
-**A scalable generative framework for multidimensional virtual spatial transcriptomics reconstruction.**
+### **S**patial **T**ranscriptomics **I**mputation via **F**low **M**atching with **I**nternal **L**earing
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper](https://img.shields.io/badge/Paper-bioRxiv-b31b1b.svg)](https://www.biorxiv.org/content/early/2026/06/06/2026.06.03.729557)
